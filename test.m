@@ -5,7 +5,6 @@ min_rms_M = 0;
 open_matrix = [3.27; 3.24; 3.10; 2.83; 2.52; 2.13; 1.76; 1.41; 1.08; 0.804; 0.561; 0.424; 0.301; 0.222; 0.165; 0.124]';
 coeff_matrix = [0 0.4 0.8 1.2 1.6 2 2.4 2.8 3.2 3.6 4.0 4.4 4.8 5.2 5.6 6.0]';
 
-
 for M = 6
     P = zeros(N, M);
    
@@ -32,10 +31,8 @@ for M = 6
        
         total = total + (result - coeff_matrix(index))^2;
     end
-    
   
-
-    % On sait qu'on prend M=5, donc je sauvegarde les valeurs
+    % On sait qu'on prend M=6, donc je sauvegarde les valeurs
     if M == 6
         used_A = A;
     end
@@ -50,6 +47,9 @@ for M = 6
     
 end
 
-% FIND OPENING PERCENTAGE FROM FRICTION COEFFICIENT
-% PLACEHOLDER VALUES FOR NOW
 disp(used_A);
+opening = 0:0.1:3.3;
+plot(open_matrix,coeff_matrix,'o',opening,subs(poly,opening));
+title('Données mesurées superposées de la fonction polynomiale calculée')
+ylabel('Variation(cm) de la hauteur du floteur par rapport à lhorizontale')
+xlabel('Tension(V)')
